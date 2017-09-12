@@ -1,7 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Clase main que contiene el llamado a la clase que contiene la logoca del programa junto con sus excepciones
+ * @author Juan Ricardo Rodriguez Campos
+ * @author Juan David Reyes
+ * @verion 1.0.0
+ * @since FavoritosNetflix 1.0.0
  */
 package com.mycompany.mavenproject1;
 
@@ -15,28 +17,29 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.Scanner;
 
-/**
- *
- * @author steven.hernandez
- */
 
 public class ReadJson {
     
     public static void main(String[] args) throws Exception{
+    
+    // Excepciones del proyecto 
     
     boolean p=true;    
     do{    
         try{
         Listado l = new Listado();
         }
+        //catch para un dato de entrada erroneo
         catch(InputMismatchException e){
             System.out.println("----------------------------");
             System.out.println(" Error Intentelo Nuevamente ");   
             System.out.println("----------------------------");
+        // catch para puntero nulo    
         }catch(NullPointerException e){
             System.out.println("----------------------------------");
             System.out.println(" No se encontraron mas datos  ");
             System.out.println("----------------------------------");
+        // catch para el debordamiento del vector    
         }catch(ArrayIndexOutOfBoundsException e){
             System.out.println("--------------------------------");
             System.out.println("Se supero el limite de la lista ");

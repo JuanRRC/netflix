@@ -1,9 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.mycompany.mavenproject1;
+
+/**
+ * Esta clase contiene los metodos de busqueda y ordenamiento para un proyecto que utliliza la api de netflix
+ * @author Juan Ricardo Rodriguez Campos
+ * @author Juan David Reyes
+ * @verion 1.0.0
+ * @since FavoritosNetflix 1.0.0
+ */
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -12,45 +16,83 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.Scanner;
 
-/**
- *
- * @author Clint
- */
-public class ApiNetflix  {
+public class ApiNetflix {
+    
+    //atributos de la clase ApiNetflix (arrays y contador)
     
     int contador = 0;
-    Favoritos lista[]=new Favoritos[15];
+    Favoritos lista[]=new Favoritos[3];
     Favoritos aux[]=new Favoritos[1];
-    Favoritos lista2[]=new Favoritos[15];
-    Favoritos listaA[]=new Favoritos[15];
-
+    Favoritos lista2[];
+    Favoritos listaA[]=new Favoritos[3];
+    
+    //metodos get y set de la clase
+    /**
+     * 
+     * @return 
+     */
     public Favoritos[] getListaA() {
         return listaA;
     }
-
+    /**
+     * 
+     * @param listaA 
+     */
     public void setListaA(Favoritos[] listaA) {
         this.listaA = listaA;
     }
     
+    /**
+     * 
+     * @return 
+     */
     public Favoritos[] getLista2() {
         return lista2;
     }
 
+    /**
+     * 
+     * @param lista2 
+     */
     public void setLista2(Favoritos[] lista2) {
         this.lista2 = lista2;
+    }
+
+    /**
+     * 
+     * @return 
+     */
+    public Favoritos[] getLista() {
+        return lista;
+    }
+
+    /**
+     * 
+     * @param lista 
+     */
+    public void setLista(Favoritos[] lista) {
+        this.lista = lista;
     }
    
     
     
-    
+    /**
+     * metodo Actor que contiene las tres formas de busqueda que contiene el programa
+     * @param op
+     * @throws Exception 
+     */
     public void Actor(int op) throws Exception{
+        //ller datos por consola
         Scanner t = new Scanner(System.in);
+        
+        //condicional para busqueda por actor
         
         if(op == 1){
             System.out.println(" Digite el nombre del actor : ");
             String nombre=t.nextLine();
             String nombre1 = nombre.replace(" ","%20");
             
+            //lectura de la url del json
             String json = ApiNetflix.readUrl("https://netflixroulette.net/api/api.php?actor="+nombre1); //API de netflix
             JSONArray peliculas = new JSONArray(json);
             for(int i=0; i<peliculas.length(); i++){
@@ -69,11 +111,14 @@ public class ApiNetflix  {
             } 
         }
         
+        //condicional para la busqueda por director
+        
         if(op == 2){
             System.out.println(" Digite el nombre del director : ");
             String nombre=t.nextLine();
             String nombre1 = nombre.replace(" ","%20");
             
+            //lectura de la url del json de la api
             String json = ApiNetflix.readUrl("https://netflixroulette.net/api/api.php?director="+nombre1); //API de netflix
             JSONArray peliculas = new JSONArray(json);
             for(int i=0; i<peliculas.length(); i++){
@@ -92,6 +137,7 @@ public class ApiNetflix  {
             } 
         }
         
+        //condicional de la busqueda por el titulo de la pelicula
         if(op == 3){
             System.out.println(" Digite el titulo de la pelicula : ");
             String nombre=t.nextLine();
@@ -116,10 +162,17 @@ public class ApiNetflix  {
                 
     }
     
-
+    /**
+     * metodo agregar que recibe el nombre de la pelicula como parametro, lo busca y los envia a la clase Favoritos para la creacion de objetos
+     * @param nombre
+     * @throws Exception 
+     */
     public void Agregar(String nombre) throws Exception{
-                           
+            
+            
             float puntaje=0;
+            
+            //aqui se reemplaza los espacios por "%20" para evitar algun tipo de error
             String nombre1 = nombre.replace(" ","%20");
             
             
@@ -142,33 +195,46 @@ public class ApiNetflix  {
                 lista[contador]= new Favoritos(unit,id,titulo,año,puntaje,categoria,cast,director,resumen,duracion);
                 
            contador = contador +1;
-           
-           
+        
+        this.setLista(lista);
     }
     
     
+    
+    //Metodo de ordenamiento del array de objetos
+    
+    /*
     public void ascendete() {
         
-    this.lista2=this.lista;           
+    Favoritos a[] = new Favoritos[3];
+    System.arraycopy(a,0, lista, 0,lista.length);
     
-    int tamaño=this.lista2.length;
-     
-    for(int i=1;i<tamaño;i++){
+    Favoritos aux[]= new Favoritos[1];
+    int tamaño=a.length;
+    
+    for(int i=0;i<tamaño;i++){
+        
         for(int j=0;j<tamaño-1;j++){
-            if(this.lista2[j].getRating()>this.lista2[j+1].getRating()){
-                    this.aux[0]=this.lista2[j];
-                    this.lista2[j]=this.lista2[j+1];
-                    this.lista2[j+1]=this.aux[1];
-                    System.out.println("aux :"+this.aux[j]);
-                    System.out.println("lista2 :"+this.lista2[j]);
+            if(a[j].getRating() > a[j+1].getRating()){
+                    aux[0]=a[j];
+                    a[j]=a[j+1];
+                    a[j+1]=aux[0];
+
             }
         }
-    }
-        this.setListaA(lista2);
+        
         
     }
+       
+      this.setListaA(a);
     
-  
+    }
+    */
+    
+    //-------------------------------------------------------------------------------------
+    /**
+     * Metodo mostrar que lista las peliculas agregadas al array de objetos favoritos
+     */
     public void mostrar(){
         for(int i=0;i<this.lista.length;i++){           
             System.out.println("----------Pelicula "+(i+1)+"-----------");
@@ -192,7 +258,7 @@ public class ApiNetflix  {
     
     
     
-    
+    /*
         public void mostrarA(){
         for(int i=0;i<this.listaA.length;i++){           
             System.out.println("----------Pelicula "+(i+1)+"-----------");
@@ -213,7 +279,14 @@ public class ApiNetflix  {
             
         }      
     }
-       
+    */
+    
+    /**
+     * metodo que recibe como parametro la direccion de la url y permite que se trabaje con los datos obtenidos de ella.
+     * @param urlString
+     * @return
+     * @throws Exception 
+     */
     private static String readUrl(String urlString) throws Exception { 
         BufferedReader reader = null; 
         try { 
@@ -233,6 +306,9 @@ public class ApiNetflix  {
         } 
     }
 
-    
-    
+    // Fin de la clase ApiNetflix
 }
+
+    
+    
+

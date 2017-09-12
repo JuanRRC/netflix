@@ -1,39 +1,44 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.mycompany.mavenproject1;
 
 import java.util.Scanner;
 
 /**
- *
- * @author Clint
+ * Esta clase contiene el menu del proyecto 
+ * @author Juan Ricardo Rodriguez Campos
+ * @author Juan David Reyes
+ * @verion 1.0.0
+ * @since FavoritosNetflix 1.0.0
  */
 public class Listado {
- 
+
+    /**
+    * metodo listado vacio sin parametros
+    */
     public Listado() throws Exception{
         
-        Scanner t = new Scanner(System.in);
         
-        System.out.println("--------------------------------------------------------------------------------------");
-        System.out.println("--------------------------------------------------------------------------------------");
-        System.out.println(" ***    *** ******* ************ ********** ***     ****  *****      *****            ");
-        System.out.println(" ****   *** ******* ************ ********** ***     ****   *****    *****             ");
-        System.out.println(" *****  *** ***         ****     ***        ***     ****    *****  *****              ");
-        System.out.println(" ****** *** ******      ****     ******     ***     ****     **********               ");
-        System.out.println(" ********** ******      ****     ******     ***     ****     *********               ");
-        System.out.println(" *** ****** ***         ****     ***        ***     ****     ***** *****              ");
-        System.out.println(" ***  ***** ***         ****     ***        ***     ****    *****   *****             ");
-        System.out.println(" ***   **** *******     ****     ***        ******* ****   *****     *****            ");
-        System.out.println(" ***    *** *******     ****     ***        ******* ****  *****       *****           ");
-        System.out.println("--------------------------------------------------------------------------------------");
-        System.out.println("--------------------------------------------------------------------------------------");
+        
+        Scanner t = new Scanner(System.in);
+    // Inicio del programa
+        System.out.println("--------------------------------------------------------------------------------------------");
+        System.out.println("--------------------------------------------------------------------------------------------");
+        System.out.println("       ***    *** ******* ************ ********** ***     ****  *****      *****            ");
+        System.out.println("       ****   *** ******* ************ ********** ***     ****   *****    *****             ");
+        System.out.println("       *****  *** ***         ****     ***        ***     ****    *****  *****              ");
+        System.out.println("       ****** *** ******      ****     ******     ***     ****     **********               ");
+        System.out.println("       ********** ******      ****     ******     ***     ****     *********                ");
+        System.out.println("       *** ****** ***         ****     ***        ***     ****     ***** *****              ");
+        System.out.println("       ***  ***** ***         ****     ***        ***     ****    *****   *****             ");
+        System.out.println("       ***   **** *******     ****     ***        ******* ****   *****     *****            ");
+        System.out.println("       ***    *** *******     ****     ***        ******* ****  *****       *****           ");
+        System.out.println("--------------------------------------------------------------------------------------------");
+        System.out.println("--------------------------------------------------------------------------------------------");
+    
         
         ApiNetflix p = new ApiNetflix();
         
-        
+    //Meni del programa    
         OUTER:
         while (true) {
                
@@ -90,8 +95,7 @@ public class Listado {
                         break ;
                     
                     case 5:
-                        p.mostrar();
-
+                       p.mostrar();
                         break;
                     
                     case 6:
@@ -102,15 +106,20 @@ public class Listado {
         }
     }
             
-    
+    /**
+     * Submenu para agregar peliculas al array de favoitos
+     */
     public static void submenu(){
         System.out.println("---------------Favoritos-----------------|");
         System.out.println("1. Agregar una peliculas a Favoritos     |");
         System.out.println("2. Regresar                              |");
         System.out.println("-----------------------------------------|");
     }
-        
-    }
+       
+    
+    
+//Fin de la clase Listado    
+}
     
     
     
